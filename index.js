@@ -1,7 +1,17 @@
 import {Light, Sphere} from './visuals/index.js'
+import {fftSize} from './constants.js';
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 0.1, 1000 );
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+const mouse = [.5, .5]
+
+const onMouseMove = e => {
+  mouse[0] = e.clientX / window.innerWidth;
+  mouse[1] = e.clientY / window.innerHeight;
+}
+
+window.addEventListener( 'mousemove', onMouseMove );
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
@@ -21,15 +31,16 @@ loader.load(
 		sound.play();
 	}
 );
-const analyser = new THREE.AudioAnalyser( sound, 512 );
+const analyser = new THREE.AudioAnalyser( sound, fftSize );
 
 const visuals = [new Light(scene), new Sphere(scene)];
 
 function animate() {
 	requestAnimationFrame( animate );
-	renderer.render( scene, camera );
-  window.freqs = analyser.getFrequencyData();;
-  visuals.forEach(v => v.move())
+  // camera.position.x = Math.sin( .5 * Math.PI * ( mouse[ 0 ] - .5 ) );
+  // camera.position.y = Math.sin( .25 * Math.PI * ( mouse[ 1 ] - .5 ) );
+	renderer.render(scene, camera);
+  visuals.forEach(v => v.move(analyser.getFrequencyData()))
 }
 
 animate();

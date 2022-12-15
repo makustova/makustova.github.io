@@ -4,10 +4,18 @@ export class Light extends BaseVisual {
   constructor(scene) {
     super(scene);
 
-    const light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
-    scene.add(light);
+    this.red = new THREE.PointLight( 0xff0000, 1, 100 );
+    this.red.position.set( 3, 3, 3 );
+
+    this.blue = new THREE.PointLight(0x0000ff, 1, 100)
+    this.blue.position.set( -1, -1, 2 );
+
+    scene.add(this.red);
+    scene.add(this.blue);
   }
 
-  move() {
+  move(freqs) {
+    this.red.intensity = freqs[1] / 1000
+    this.blue.intensity = 0.5 - this.red.intensity
   }
 }

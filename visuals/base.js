@@ -3,7 +3,7 @@ export class BaseVisual {
     this.scene = scene;
   }
 
-  move() {
+  move(freqs) {
     console.error('Not implemented')
   }
 }
