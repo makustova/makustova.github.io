@@ -28,7 +28,7 @@ export class Sphere extends BaseVisual {
     this.dots = []
 
     for (let i = 0; i < analyserSize; i++) {
-      const geometry = new THREE.SphereGeometry(.03, 32, 16)
+      const geometry = new THREE.SphereGeometry(.05, 32, 16)
       const material = new THREE.MeshPhongMaterial( { color: 0xffff00 } );
       const dot = new THREE.Mesh( geometry, material );
       this.dots.push(dot)
@@ -36,35 +36,24 @@ export class Sphere extends BaseVisual {
       this.scene.add(dot);
     }
 
+    window.dotPositions = [];
+
+    for (let i = 0; i < analyserSize; i++) {
+      window.dotPositions.push(Math.random());
+    }
   }
 
-  renderSingleDot = (freq, i) => {
-    this.dots[i].position.set(-4 + i/10, freq/100, 0)
+  moveSingleDot = (freq, i) => {
+    const spherical = new THREE.Spherical(freq/100 + 1, i, window.dotPositions[i])
+    const newPosition = new THREE.Vector3();
+    newPosition.setFromSpherical(spherical);
+
+    this.dots[i].position.set(...newPosition)
 
     window.dots = this.dots;
   }
 
   move = freqs => {
-    freqs.forEach(this.renderSingleDot)
+    freqs.forEach(this.moveSingleDot)
   }
 }
-
-// export class Sphere extends BaseVisual {
-//   constructor(scene) {
-//     super(scene)
-
-//     this.scene = scene;
-//   }
-
-//   createSphericalVector = f => {
-//     const geometry = new THREE.SphereGeometry(10, 10, 10)
-//     const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
-//     const sphere = new THREE.Mesh( geometry, material );
-
-//     this.scene.add(sphere);
-//   }
-
-//   move(freqs) {
-//     freqs.forEach(this.createSphericalVector)
-//   }
-// }
