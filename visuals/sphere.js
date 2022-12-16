@@ -1,21 +1,51 @@
 import {BaseVisual} from "./base.js";
+import {analyserSize} from "../constants.js";
+
+// export class Sphere extends BaseVisual {
+//   constructor(scene) {
+//     super(scene);
+
+//     const sphereGeometry = new THREE.SphereGeometry( 2, 32, 32 );
+//     const sphereMaterial = new THREE.MeshLambertMaterial( { color: 0xcccccc, opacity: 0.3, wireframe: true } );
+//     const sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
+//     sphere.rotation.z = Math.PI / 2;
+
+//     scene.add( sphere );
+
+//     this.sphere = sphere;
+//   }
+
+//   move(freqs) {
+//     this.sphere.rotation.x += .0005;
+//   }
+// }
+
 
 export class Sphere extends BaseVisual {
   constructor(scene) {
     super(scene);
 
-    const sphereGeometry = new THREE.SphereGeometry( 2, 32, 32 );
-    const sphereMaterial = new THREE.MeshLambertMaterial( { color: 0xcccccc, opacity: 0.3 } );
-    const sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
-    sphere.rotation.z = Math.PI / 2;
+    this.dots = []
 
-    scene.add( sphere );
+    for (let i = 0; i < analyserSize; i++) {
+      const geometry = new THREE.SphereGeometry(.03, 32, 16)
+      const material = new THREE.MeshPhongMaterial( { color: 0xffff00 } );
+      const dot = new THREE.Mesh( geometry, material );
+      this.dots.push(dot)
 
-    this.sphere = sphere;
+      this.scene.add(dot);
+    }
+
   }
 
-  move(freqs) {
-    this.sphere.rotation.x += freqs[5] / 50000;
+  renderSingleDot = (freq, i) => {
+    this.dots[i].position.set(-4 + i/10, freq/100, 0)
+
+    window.dots = this.dots;
+  }
+
+  move = freqs => {
+    freqs.forEach(this.renderSingleDot)
   }
 }
 
@@ -23,35 +53,18 @@ export class Sphere extends BaseVisual {
 //   constructor(scene) {
 //     super(scene)
 
-//     const geometry = new THREE.BufferGeometry();
-//     // create a simple square shape. We duplicate the top left and bottom right
-//     // vertices because each vertex needs to appear once per triangle.
-//     const vertices = new Float32Array( [
-//       -1.0, -1.0,  1.0,
-//       1.0, -1.0,  1.0,
-//       1.0,  1.0,  1.0,
-
-//       1.0,  1.0,  1.0,
-//       -1.0,  1.0,  1.0,
-//       -1.0, -1.0,  1.0
-//     ] );
-
-//     // itemSize = 3 because there are 3 values (components) per vertex
-//     geometry.setAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
-//     const material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
-//     const mesh = new THREE.Mesh( geometry, material );
-
-//     scene.add(mesh);
+//     this.scene = scene;
 //   }
 
-//   createSphericalVector(f) {
-//     const spherical = new THREE.Spherical(10, f, f/10)
-//     const center = new THREE.Vector3();
-//     center.setFromSpherical(spherical);
+//   createSphericalVector = f => {
+//     const geometry = new THREE.SphereGeometry(10, 10, 10)
+//     const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+//     const sphere = new THREE.Mesh( geometry, material );
 
-//     const sphere = new THREE.Sphere(center, 1)
+//     this.scene.add(sphere);
 //   }
 
 //   move(freqs) {
+//     freqs.forEach(this.createSphericalVector)
 //   }
 // }
