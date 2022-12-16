@@ -10,12 +10,17 @@ export class Light extends BaseVisual {
     this.blue = new THREE.PointLight(0x0000ff, 1, 100)
     this.blue.position.set( -1, -1, 2 );
 
+    this.white = new THREE.PointLight(0xffffff, 1, 100)
+    this.white.intensity = 100
+    this.white.position.set( 0, 0, -5 );
+
     scene.add(this.red);
     scene.add(this.blue);
+    scene.add(this.white)
   }
 
   move(freqs) {
-    this.red.intensity = freqs[1] / 1000
-    this.blue.intensity = 0.5 - this.red.intensity
+    // this.red.intensity = freqs[1] / 1000
+    // this.blue.intensity = freqs[100] / 1000
   }
 }

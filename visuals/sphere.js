@@ -5,7 +5,7 @@ export class Sphere extends BaseVisual {
     super(scene);
 
     const sphereGeometry = new THREE.SphereGeometry( 2, 32, 32 );
-    const sphereMaterial = new THREE.MeshPhongMaterial( { color: 0xcccccc, opacity: 0.3 } );
+    const sphereMaterial = new THREE.MeshLambertMaterial( { color: 0xcccccc, opacity: 0.3 } );
     const sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
     sphere.rotation.z = Math.PI / 2;
 
