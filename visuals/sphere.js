@@ -28,8 +28,8 @@ export class Sphere extends BaseVisual {
     this.dots = []
 
     for (let i = 0; i < analyserSize; i++) {
-      const geometry = new THREE.SphereGeometry(.05, 32, 16)
-      const material = new THREE.MeshPhongMaterial( { color: 0xffff00 } );
+      const geometry = new THREE.SphereGeometry(.007, 32, 16)
+      const material = new THREE.MeshToonMaterial( { color: 0xffff00 } );
       const dot = new THREE.Mesh( geometry, material );
       this.dots.push(dot)
 
@@ -39,7 +39,7 @@ export class Sphere extends BaseVisual {
     window.dotPositions = [];
 
     for (let i = 0; i < analyserSize; i++) {
-      window.dotPositions.push(Math.random());
+      window.dotPositions.push(Math.random() * 100);
     }
   }
 

@@ -17,7 +17,7 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
-camera.position.x = -2;
+camera.position.x = 0;
 camera.position.z = 5;
 
 const audioListener = new THREE.AudioListener();
@@ -42,10 +42,11 @@ let z = 0;
 function animate() {
 	requestAnimationFrame( animate );
 	renderer.render(scene, camera);
-	// camera.translateX(Math.sin(x));
-	// camera.translateZ(Math.cos(z));
-	x += 0.1
-	z += 0.1
+	camera.translateX(Math.cos(x));
+	camera.translateZ(Math.sin(z));
+	camera.lookAt(0, 0, 0)
+	x += 0.05
+	z += 0.05
   visuals.forEach(v => v.move(analyser.getFrequencyData()))
 }
 
