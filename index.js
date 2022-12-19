@@ -1,24 +1,12 @@
-import {Light, Sphere} from './visuals/index.js'
+import {Light, Sphere, Heart} from './visuals/index.js'
 import {fftSize} from './constants.js';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-const mouse = [.5, .5]
-
-const onMouseMove = e => {
-  mouse[0] = e.clientX / window.innerWidth;
-  mouse[1] = e.clientY / window.innerHeight;
-}
-
-window.addEventListener( 'mousemove', onMouseMove );
-
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
-
-camera.position.x = 0;
-camera.position.z = 5;
 
 const audioListener = new THREE.AudioListener();
 camera.add( audioListener );
@@ -34,7 +22,7 @@ loader.load(
 );
 const analyser = new THREE.AudioAnalyser( sound, fftSize );
 
-const visuals = [new Light(scene), new Sphere(scene)];
+const visuals = [new Light(scene), new Sphere(scene), new Heart(scene)];
 
 let x = 0;
 let z = 0;
@@ -42,11 +30,11 @@ let z = 0;
 function animate() {
 	requestAnimationFrame( animate );
 	renderer.render(scene, camera);
-	camera.translateX(Math.cos(x));
-	camera.translateZ(Math.sin(z));
+	camera.position.x =  Math.cos(x) * 2 * Math.PI ;
+	camera.position.z =  Math.sin(z) * 2 * Math.PI ;
 	camera.lookAt(0, 0, 0)
-	x += 0.05
-	z += 0.05
+	x += 0.005
+	z += 0.005
   visuals.forEach(v => v.move(analyser.getFrequencyData()))
 }
 

@@ -4,7 +4,7 @@ export class Light extends BaseVisual {
   constructor(scene) {
     super(scene);
 
-    this.red = new THREE.PointLight( 0xffffff, 1, 100 );
+    this.red = new THREE.PointLight( 0xff0000, 1, 100 );
     this.red.position.set( 3, 3, 3 );
 
     this.blue = new THREE.PointLight(0x0000ff, 1, 100)

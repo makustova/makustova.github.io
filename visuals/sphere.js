@@ -1,26 +1,6 @@
 import {BaseVisual} from "./base.js";
 import {analyserSize} from "../constants.js";
 
-// export class Sphere extends BaseVisual {
-//   constructor(scene) {
-//     super(scene);
-
-//     const sphereGeometry = new THREE.SphereGeometry( 2, 32, 32 );
-//     const sphereMaterial = new THREE.MeshLambertMaterial( { color: 0xcccccc, opacity: 0.3, wireframe: true } );
-//     const sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
-//     sphere.rotation.z = Math.PI / 2;
-
-//     scene.add( sphere );
-
-//     this.sphere = sphere;
-//   }
-
-//   move(freqs) {
-//     this.sphere.rotation.x += .0005;
-//   }
-// }
-
-
 export class Sphere extends BaseVisual {
   constructor(scene) {
     super(scene);
@@ -28,8 +8,8 @@ export class Sphere extends BaseVisual {
     this.dots = []
 
     for (let i = 0; i < analyserSize; i++) {
-      const geometry = new THREE.SphereGeometry(.007, 32, 16)
-      const material = new THREE.MeshToonMaterial( { color: 0xffff00 } );
+      const geometry = new THREE.SphereGeometry(.01, 32, 16)
+      const material = new THREE.MeshToonMaterial( { color: 0xffffff } );
       const dot = new THREE.Mesh( geometry, material );
       this.dots.push(dot)
 
@@ -44,7 +24,7 @@ export class Sphere extends BaseVisual {
   }
 
   moveSingleDot = (freq, i) => {
-    const spherical = new THREE.Spherical(freq/100 + 1, i, window.dotPositions[i])
+    const spherical = new THREE.Spherical(freq/100 + 2, i, window.dotPositions[i])
     const newPosition = new THREE.Vector3();
     newPosition.setFromSpherical(spherical);
 
