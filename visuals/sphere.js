@@ -1,3 +1,4 @@
+import * as THREE from 'three';
 import {BaseVisual} from "./base.js";
 import {analyserSize} from "../constants.js";
 

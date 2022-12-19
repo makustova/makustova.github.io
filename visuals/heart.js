@@ -1,3 +1,5 @@
+import * as THREE from 'three';
+
 import {BaseVisual} from "./base.js";
 
 export class Heart extends BaseVisual {
@@ -8,8 +10,8 @@ export class Heart extends BaseVisual {
     this.light.position.set(0, 0, 0);
     scene.add(this.light);
 
-    this.geometry = new THREE.SphereGeometry(.01, 32, 16)
-    this.material = new THREE.MeshToonMaterial( { color: 0xffffff } );
+    this.geometry = new THREE.SphereGeometry(10, 32, 16)
+    this.material = new THREE.MeshPhongMaterial( { color: 0xffffff } );
     this.material.emissive = 0xffffff
     this.material.emissiveIntensity = 100
     this.heart = new THREE.Mesh( this.geometry, this.material );
