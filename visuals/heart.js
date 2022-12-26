@@ -10,11 +10,11 @@ export class Heart extends BaseVisual {
     this.light.position.set(0, 0, 0);
     scene.add(this.light);
 
-    const geometry = new THREE.SphereGeometry(0.5, 32, 16)
-    const material = new THREE.MeshMatcapMaterial( { color: 0xffffff } );
-    const dot = new THREE.Mesh( geometry, material );
+    // const geometry = new THREE.SphereGeometry(0.5, 32, 16)
+    // const material = new THREE.MeshMatcapMaterial( { color: 0xffffff } );
+    // const dot = new THREE.Mesh( geometry, material );
 
-    this.scene.add(dot);
+    // this.scene.add(dot);
   }
 
   move(freqs) {

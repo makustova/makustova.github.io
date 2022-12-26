@@ -1,0 +1,22 @@
+#controls {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: transparent;
+  opacity: .7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#controls::after {
+  display: block;
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: 35px solid transparent;
+  border-bottom: 35px solid transparent;
+  border-left: 60px solid white;
+}

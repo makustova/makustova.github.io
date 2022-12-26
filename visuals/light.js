@@ -16,7 +16,7 @@ export class Light extends BaseVisual {
   }
 
   move(freqs) {
-    // this.red.intensity = freqs[1] / 1000
-    // this.blue.intensity = freqs[100] / 1000
+    this.red.intensity = freqs[1] / 100
+    this.blue.intensity = freqs[100] / 100
   }
 }

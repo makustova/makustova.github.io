@@ -9,9 +9,11 @@ export class Sphere extends BaseVisual {
     this.dots = []
 
     for (let i = 0; i < analyserSize; i++) {
-      const geometry = new THREE.SphereGeometry(.01, 32, 16)
-      const material = new THREE.MeshToonMaterial( { color: 0xffffff } );
+      const geometry = new THREE.SphereGeometry(.02, 32, 16)
+      const color = `hsl(${i}, 40%, 40%)`
+      const material = new THREE.MeshToonMaterial( { color } );
       const dot = new THREE.Mesh( geometry, material );
+      dot.castShadow = true
       this.dots.push(dot)
 
       this.scene.add(dot);
