@@ -30,6 +30,13 @@ audioLoader.load(
 	'audio/issues-mix.wav',
 	function ( audioBuffer ) {
 		sound.setBuffer( audioBuffer );
+		document.body.onclick = () => {
+			if (sound.isPlaying) {
+				sound.pause();
+				return
+			}
+			sound.play()
+		}
 	}
 );
 
@@ -62,21 +69,10 @@ const composer = new EffectComposer( renderer );
 composer.addPass( renderScene );
 composer.addPass( bloomPass );
 
-const visuals = [new Light(scene), new Sphere(scene)];
+const visuals = [new Light(scene), new Sphere(scene), new Flare(scene)];
 
 let x = 0;
 let z = 0;
-
-document.addEventListener('DOMContentLoaded', () => {
-	visuals.push(new Flare(scene))
-	document.body.onclick = () => {
-		if (sound.isPlaying) {
-			sound.pause();
-			return
-		}
-		sound.play()
-	}
-})
 
 function animate() {
 	requestAnimationFrame( animate );
