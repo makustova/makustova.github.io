@@ -30,11 +30,14 @@ audioLoader.load(
 	'audio/issues-mix.wav',
 	function ( audioBuffer ) {
 		sound.setBuffer( audioBuffer );
+		const control = document.getElementById('control');
+		control.innerText = 'click'
 		document.body.onclick = () => {
 			if (sound.isPlaying) {
 				sound.pause();
 				return
 			}
+			control.innerText = ''
 			sound.play()
 		}
 	}
