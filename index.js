@@ -43,18 +43,10 @@ audioLoader.load(
 // 	sound.play()
 // }
 
-document.body.onclick = () => {
-	if (sound.isPlaying) {
-		sound.pause();
-		return
-	}
-	sound.play()
-}
-
 window.onresize = function () {
 	camera.aspect = window.innerWidth / window.innerHeight;
-	camera.updateProjectionMatrix();
 	renderer.setSize( window.innerWidth, window.innerHeight );
+	camera.updateProjectionMatrix();
 };
 
 const analyser = new THREE.AudioAnalyser( sound, fftSize );
@@ -70,10 +62,21 @@ const composer = new EffectComposer( renderer );
 composer.addPass( renderScene );
 composer.addPass( bloomPass );
 
-const visuals = [new Light(scene), new Sphere(scene), new Flare(scene)];
+const visuals = [new Light(scene), new Sphere(scene)];
 
 let x = 0;
 let z = 0;
+
+document.addEventListener('DOMContentLoaded', () => {
+	visuals.push(new Flare(scene))
+	document.body.onclick = () => {
+		if (sound.isPlaying) {
+			sound.pause();
+			return
+		}
+		sound.play()
+	}
+})
 
 function animate() {
 	requestAnimationFrame( animate );
