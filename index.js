@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import {UnrealBloomPass} from 'three/addons/postprocessing/UnrealBloomPass.js'
 import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js'
-import {Light, Sphere, Heart} from './visuals/index.js'
+import {Light, Sphere, Heart, Flare} from './visuals/index.js'
 import {fftSize} from './constants.js';
 
 const scene = new THREE.Scene();
@@ -62,7 +62,7 @@ const composer = new EffectComposer( renderer );
 composer.addPass( renderScene );
 composer.addPass( bloomPass );
 
-const visuals = [new Light(scene), new Sphere(scene), new Heart(scene)];
+const visuals = [new Light(scene), new Sphere(scene), new Flare(scene)];
 
 let x = 0;
 let z = 0;
