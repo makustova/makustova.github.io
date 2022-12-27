@@ -1,0 +1,31 @@
+body {
+  background: linear-gradient(#192641 0%, #0a0b1d 100%);
+}
+
+#title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: fit-content;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Quicksand', sans-serif;
+  color: #5d5c7a;
+  opacity: .5;
+  font-size: 40px;
+  text-decoration: none;
+  /* display: none; */
+}
+
+#control {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  background-color: white;
+  top: 50%;
+  transform: translateY(-50%);
+}

@@ -21,15 +21,20 @@
   border-left: 60px solid white;
 }
 
-#control {
+.control {
   font-family: 'Raleway', sans-serif;
   color: white;
   opacity: .5;
+  font-size: 40px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.controls {
   position: absolute;
   left: 0;
   right: 0;
   margin: 0 auto;
-  width: fit-content;
   bottom: 10px;
-  font-size: 40px;
+  width: fit-content;
 }

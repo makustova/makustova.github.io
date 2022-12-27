@@ -8,8 +8,8 @@ export class Flare extends BaseVisual {
 
     const textureLoader = new THREE.TextureLoader();
 
-    const flare = textureLoader.load( './textures/flare.png' );
-    const flarechen = textureLoader.load( './textures/flarechen.png' );
+    const flare = textureLoader.load( './3d/textures/flare.png' );
+    const flarechen = textureLoader.load( './3d/textures/flarechen.png' );
 
     this.light = new THREE.PointLight( 0xffffff, 1);
     this.light.color.setHSL(300, 100, 50);
