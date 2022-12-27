@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import {UnrealBloomPass} from 'three/addons/postprocessing/UnrealBloomPass.js'
 import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js'
-import {Light, Sphere, Heart, Flare} from './visuals/index.js'
+import {Light, Sphere, Flare} from './visuals/index.js'
 import {fftSize} from './constants.js';
 
 const scene = new THREE.Scene();
@@ -27,19 +27,27 @@ const sound = new THREE.Audio( audioListener );
 scene.add( sound );
 const audioLoader = new THREE.AudioLoader();
 audioLoader.load(
-	'audio/issues.mp3',
+	'audio/issues-mix.wav',
 	function ( audioBuffer ) {
 		sound.setBuffer( audioBuffer );
 	}
 );
 
-document.getElementById('controls').onclick = (event) => {
+// document.getElementById('controls').onclick = (event) => {
+// 	if (sound.isPlaying) {
+// 		event.target.style.opacity = .7;
+// 		sound.pause();
+// 		return
+// 	}
+// 	event.target.style.opacity = 0;
+// 	sound.play()
+// }
+
+document.body.onclick = () => {
 	if (sound.isPlaying) {
-		event.target.style.opacity = .7;
 		sound.pause();
 		return
 	}
-	event.target.style.opacity = 0;
 	sound.play()
 }
 

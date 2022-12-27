@@ -9,6 +9,7 @@ export class Flare extends BaseVisual {
     const textureLoader = new THREE.TextureLoader();
 
     const flare = textureLoader.load( './textures/flare.png' );
+    const flarechen = textureLoader.load( './textures/flarechen.png' );
 
     this.light = new THREE.PointLight( 0xffffff, 1);
     this.light.color.setHSL(300, 100, 50);
@@ -17,6 +18,7 @@ export class Flare extends BaseVisual {
 
     const lensflare = new Lensflare();
     lensflare.addElement( new LensflareElement( flare, 700, 0, this.light.color ) );
+    lensflare.addElement( new LensflareElement( flarechen, 60, 0.6, this.light.color ) );
 
     this.light.add( lensflare );
   }
