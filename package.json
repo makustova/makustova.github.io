@@ -5,7 +5,7 @@
   "repository": "git@github.com:makustova/makustova.github.io.git",
   "author": "Marina Kustova <marina.kustova@youhodler.com>",
   "license": "MIT",
-  "homepage": "https://makustova.github.io/react-gh-pages",
+  "homepage": "https://makustova.github.io",
   "dependencies": {
     "gh-pages": "^6.1.1",
     "react": "^18.2.0",
