@@ -2,6 +2,7 @@ import * as React from "react";
 import {createRoot} from "react-dom/client";
 import {createHashRouter, RouterProvider, Link} from "react-router-dom";
 import {Sincerity, Siren} from "./pages";
+import "./reset.css";
 
 const router = createHashRouter([
   {
