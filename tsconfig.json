@@ -3,10 +3,7 @@
     "target": "ES5",
     "module": "NodeNext",
     "moduleResolution": "nodenext",
-    "lib": [
-      "DOM",
-      "ESNext"
-    ],
+    "lib": ["DOM", "ESNext"],
     "jsx": "react-jsx",
     "noEmit": true,
     "isolatedModules": true,
@@ -16,13 +13,6 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "include": [
-    "./src/**/*"
-  ],
-  "exclude": [
-    "./node_modules",
-    "./build",
-    "./dist",
-    "./.vscode"
-  ]
+  "include": ["./src/**/*"],
+  "exclude": ["./node_modules", "./build", "./dist", "./.vscode"]
 }

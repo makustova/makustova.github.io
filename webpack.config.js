@@ -1,4 +1,4 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   module: {
     rules: [
@@ -6,18 +6,18 @@ module.exports = {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
         },
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html',
-      filename: './index.html',
+      template: "./public/index.html",
+      filename: "./index.html",
     }),
   ],
   resolve: {
-    extensions: ['.ts', '.js', '.tsx', '.jsx'],
-  }
+    extensions: [".ts", ".js", ".tsx", ".jsx"],
+  },
 };
