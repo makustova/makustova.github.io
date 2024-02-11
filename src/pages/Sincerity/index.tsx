@@ -1,14 +1,21 @@
 import * as React from "react";
 import sincerity from "./audio/sincerity.wav";
 import {useTrack} from "../../hooks";
-import {drawBars} from "../../visuals/bars";
+import {drawBars} from "../../visuals";
+
+let accentColorQ = 0;
 
 export const Sincerity: React.FC = () => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
   const timeRef = React.useRef<number>(0);
+  const playPromiseRef = React.useRef<Promise<void> | null>(null);
   const analyserRef = React.useRef<AnalyserNode | null>(null);
   const [freqs, setFreqs] = React.useState<Uint8Array | null>(null);
+  const [accentColor, setAccentColor] = React.useState<string>(
+    "hsl(" + accentColorQ + ", 100%, 45%)"
+  );
   const sourceRef = React.useRef<MediaElementAudioSourceNode | null>(null);
+  // const audio = useTrack("https://ccrma.stanford.edu/~jos/mp3/gtr-nylon22.mp3");
   const audio = useTrack(sincerity);
 
   React.useEffect(() => {
@@ -28,23 +35,42 @@ export const Sincerity: React.FC = () => {
     canvasRef.current.width = width;
     canvasRef.current.height = height;
     ctx.clearRect(0, 0, width, height);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.globalAlpha = 1;
 
-    drawBars(ctx, window.innerWidth, window.innerHeight, freqs);
+    setAccentColor("hsl(" + accentColorQ + ", 100%, 45%)");
+    accentColorQ++;
+
+    // console.log(accentColorQ);
+
+    drawBars({
+      ctx,
+      width: window.innerWidth,
+      height: window.innerHeight,
+      freqs,
+      accentColor,
+    });
 
     requestAnimationFrame(draw);
   }, [freqs]);
 
   const listener = (e: KeyboardEvent) => {
     if (e.key !== " ") return;
-    if (!audio.paused) {
-      audio.pause();
-      return;
-    }
-    if (sourceRef.current) {
-      audio.play();
-      return;
-    }
     const ctx = new AudioContext();
+
+    console.log(playPromiseRef.current, audio.paused, audio.currentTime);
+
+    if (playPromiseRef.current) {
+      if (audio.paused) {
+        playPromiseRef.current = audio.play();
+        return;
+      }
+      playPromiseRef.current.then(() => {
+        audio.pause();
+      });
+      return;
+    }
+
     analyserRef.current = ctx.createAnalyser();
     sourceRef.current = ctx.createMediaElementSource(audio);
     sourceRef.current.connect(analyserRef.current);
@@ -53,7 +79,8 @@ export const Sincerity: React.FC = () => {
     analyserRef.current.fftSize = 2048;
     const bufferLength = analyserRef.current.frequencyBinCount;
     setFreqs(new Uint8Array(bufferLength));
-    audio.play();
+    audio.load();
+    playPromiseRef.current = audio.play();
   };
 
   React.useEffect(() => {
