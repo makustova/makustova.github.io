@@ -1,31 +1,25 @@
 import * as React from "react";
-import sincerity from "./audio/sincerity.wav";
+import sincerity from "./audio/sincerity.mp3";
 import {useTrack} from "../../hooks";
 import {drawBars} from "../../visuals";
-
-let accentColorQ = 0;
 
 export const Sincerity: React.FC = () => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
   const timeRef = React.useRef<number>(0);
   const playPromiseRef = React.useRef<Promise<void> | null>(null);
   const analyserRef = React.useRef<AnalyserNode | null>(null);
-  const [freqs, setFreqs] = React.useState<Uint8Array | null>(null);
-  const [accentColor, setAccentColor] = React.useState<string>(
-    "hsl(" + accentColorQ + ", 100%, 45%)"
-  );
+  const freqsRef = React.useRef<Uint8Array | null>(null);
+  // const [accentColor, setAccentColor] = React.useState<string>(
+  //   "hsl(" + accentColorQ + ", 100%, 45%)"
+  // );
   const sourceRef = React.useRef<MediaElementAudioSourceNode | null>(null);
   // const audio = useTrack("https://ccrma.stanford.edu/~jos/mp3/gtr-nylon22.mp3");
   const audio = useTrack(sincerity);
 
-  React.useEffect(() => {
-    draw();
-  }, [freqs]);
-
   const draw = React.useCallback(() => {
-    if (!canvasRef.current || !analyserRef.current || !freqs) return;
+    if (!canvasRef.current || !analyserRef.current || !freqsRef.current) return;
 
-    analyserRef.current!.getByteFrequencyData(freqs);
+    analyserRef.current!.getByteFrequencyData(freqsRef.current);
 
     const ctx = canvasRef.current.getContext("2d")!;
 
@@ -38,27 +32,20 @@ export const Sincerity: React.FC = () => {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.globalAlpha = 1;
 
-    setAccentColor("hsl(" + accentColorQ + ", 100%, 45%)");
-    accentColorQ++;
-
-    // console.log(accentColorQ);
-
     drawBars({
       ctx,
       width: window.innerWidth,
       height: window.innerHeight,
-      freqs,
-      accentColor,
+      freqs: freqsRef.current,
+      accentColor: "hsl(0, 100%, 45%)",
     });
 
     requestAnimationFrame(draw);
-  }, [freqs]);
+  }, []);
 
   const listener = (e: KeyboardEvent) => {
     if (e.key !== " ") return;
     const ctx = new AudioContext();
-
-    console.log(playPromiseRef.current, audio.paused, audio.currentTime);
 
     if (playPromiseRef.current) {
       if (audio.paused) {
@@ -78,8 +65,7 @@ export const Sincerity: React.FC = () => {
     analyserRef.current.connect(ctx.destination);
     analyserRef.current.fftSize = 2048;
     const bufferLength = analyserRef.current.frequencyBinCount;
-    setFreqs(new Uint8Array(bufferLength));
-    audio.load();
+    freqsRef.current = new Uint8Array(bufferLength);
     playPromiseRef.current = audio.play();
   };
 
