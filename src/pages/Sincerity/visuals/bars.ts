@@ -1,4 +1,4 @@
-import {BORDER_FREQ} from "../constants";
+import {BORDER_FREQ} from "./constants";
 import {DrawVisual} from "./types";
 
 export const drawBars: DrawVisual = ({

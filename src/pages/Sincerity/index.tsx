@@ -1,7 +1,7 @@
 import * as React from "react";
 import sincerity from "./audio/sincerity.mp3";
 import {useTrack} from "../../hooks";
-import {drawBars} from "../../visuals";
+import {drawBars, drawCircle} from "./visuals";
 
 export const Sincerity: React.FC = () => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
@@ -25,19 +25,23 @@ export const Sincerity: React.FC = () => {
 
     const width = window.innerWidth || 0;
     const height = window.innerHeight || 0;
-
     canvasRef.current.width = width;
     canvasRef.current.height = height;
-    ctx.clearRect(0, 0, width, height);
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.globalAlpha = 1;
 
-    drawBars({
-      ctx,
-      width: window.innerWidth,
-      height: window.innerHeight,
-      freqs: freqsRef.current,
-      accentColor: "hsl(" + timeRef.current + ", 100%, 45%)",
+    const visuals = [drawCircle, drawBars];
+
+    visuals.forEach(visual => {
+      visual({
+        ctx,
+        width: window.innerWidth,
+        height: window.innerHeight,
+        freqs: freqsRef.current!,
+        accentColor: "hsl(" + timeRef.current + ", 100%, 45%)",
+      });
+
+      // ctx.clearRect(0, 0, width, height);
+      // ctx.setTransform(1, 0, 0, 1, 0, 0);
+      // ctx.globalAlpha = 1;
     });
 
     requestAnimationFrame(draw);
