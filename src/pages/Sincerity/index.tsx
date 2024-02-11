@@ -37,10 +37,12 @@ export const Sincerity: React.FC = () => {
       width: window.innerWidth,
       height: window.innerHeight,
       freqs: freqsRef.current,
-      accentColor: "hsl(0, 100%, 45%)",
+      accentColor: "hsl(" + timeRef.current + ", 100%, 45%)",
     });
 
     requestAnimationFrame(draw);
+
+    timeRef.current++;
   }, []);
 
   const listener = (e: KeyboardEvent) => {
@@ -67,6 +69,8 @@ export const Sincerity: React.FC = () => {
     const bufferLength = analyserRef.current.frequencyBinCount;
     freqsRef.current = new Uint8Array(bufferLength);
     playPromiseRef.current = audio.play();
+
+    draw();
   };
 
   React.useEffect(() => {
