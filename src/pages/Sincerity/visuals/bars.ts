@@ -1,4 +1,4 @@
-import {BORDER_FREQ} from "./constants";
+import {BORDER_FREQ, DRAW_EVERY_NTH_BAR} from "./constants";
 import {DrawVisual} from "./types";
 
 export const drawBars: DrawVisual = ({
@@ -8,7 +8,6 @@ export const drawBars: DrawVisual = ({
   freqs,
   accentColor,
 }) => {
-  const drawEveryNth = 5;
   ctx.lineWidth = 5;
   ctx.lineCap = "butt";
   ctx.shadowBlur = 10;
@@ -17,7 +16,7 @@ export const drawBars: DrawVisual = ({
   let i = 0;
 
   while (i <= BORDER_FREQ) {
-    if (i % drawEveryNth === 1) {
+    if (i % DRAW_EVERY_NTH_BAR === 1) {
       ctx.fillStyle = accentColor;
       ctx.shadowColor = accentColor;
       ctx.fillRect((width / BORDER_FREQ) * i, 0, 1, freqs[i - 1]);

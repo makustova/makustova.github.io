@@ -1,7 +1,15 @@
 import * as React from "react";
 import sincerity from "./audio/sincerity.mp3";
 import {useTrack} from "../../hooks";
-import {drawBars, drawCircle} from "./visuals";
+import {
+  drawBars,
+  drawCircle,
+  drawFlare,
+  drawLines,
+  drawDust,
+  initParticles,
+} from "./visuals";
+import {PALETTE} from "./visuals/constants";
 
 export const Sincerity: React.FC = () => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
@@ -9,9 +17,6 @@ export const Sincerity: React.FC = () => {
   const playPromiseRef = React.useRef<Promise<void> | null>(null);
   const analyserRef = React.useRef<AnalyserNode | null>(null);
   const freqsRef = React.useRef<Uint8Array | null>(null);
-  // const [accentColor, setAccentColor] = React.useState<string>(
-  //   "hsl(" + accentColorQ + ", 100%, 45%)"
-  // );
   const sourceRef = React.useRef<MediaElementAudioSourceNode | null>(null);
   // const audio = useTrack("https://ccrma.stanford.edu/~jos/mp3/gtr-nylon22.mp3");
   const audio = useTrack(sincerity);
@@ -28,7 +33,10 @@ export const Sincerity: React.FC = () => {
     canvasRef.current.width = width;
     canvasRef.current.height = height;
 
-    const visuals = [drawCircle, drawBars];
+    ctx.fillStyle = PALETTE.light;
+    ctx.fillRect(0, 0, width, height);
+
+    const visuals = [drawDust, drawFlare, drawBars, drawLines, drawCircle];
 
     visuals.forEach(visual => {
       visual({
@@ -36,12 +44,8 @@ export const Sincerity: React.FC = () => {
         width: window.innerWidth,
         height: window.innerHeight,
         freqs: freqsRef.current!,
-        accentColor: "hsl(" + timeRef.current + ", 100%, 45%)",
+        accentColor: "hsl(" + timeRef.current / 3 + ", 100%, 45%)",
       });
-
-      // ctx.clearRect(0, 0, width, height);
-      // ctx.setTransform(1, 0, 0, 1, 0, 0);
-      // ctx.globalAlpha = 1;
     });
 
     requestAnimationFrame(draw);
@@ -79,6 +83,7 @@ export const Sincerity: React.FC = () => {
 
   React.useEffect(() => {
     window.addEventListener("keydown", listener);
+    initParticles(window.innerWidth, window.innerHeight);
     return () => window.removeEventListener("keydown", listener);
   }, []);
 
