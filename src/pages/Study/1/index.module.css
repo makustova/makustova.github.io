@@ -1,29 +1,25 @@
-body {
-  padding: 10px;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
-h1 {
+.title {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-h2 {
+.subtitle {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-ul li {
+.listItem {
   list-style: inside;
   padding-left: 10px;
+  margin-bottom: 4px;
 }
 
-code {
+.code {
   font-family: monospace, monospace;
 }
 
-li, p {
+.paragraph {
   margin-bottom: 4px;
 }
