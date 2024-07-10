@@ -7,19 +7,26 @@ export {Dev} from "./Dev";
 export {Mus} from "./Mus";
 
 export const CV: React.FC = () => {
-  document.body.style.backgroundColor = "#bfa9cc";
-
   return (
     <div className={classes.wrapper}>
-      <Link to="/mus" className={classes.link}>
-        🎶
-      </Link>
-      <Link to="/dev" className={classes.link}>
-        👩‍💻
-      </Link>
-      <Link to="/cat" className={classes.link}>
-        🐈‍⬛
-      </Link>
+      <div className={classes.textBlock}>
+        <h3 className={classes.subtitle}>Hello, my name is</h3>
+        <h1 className={classes.title}>Marina</h1>
+      </div>
+
+      <div className={classes.icons}>
+        <Link to="/mus" className={classes.link}>
+          🎶
+        </Link>
+        <Link to="/dev" className={classes.link}>
+          👩‍💻
+        </Link>
+        <Link to="/cat" className={classes.link}>
+          🐈‍⬛
+        </Link>
+      </div>
+
+      <div className={classes.textBlock}>I make stuff.</div>
     </div>
   );
 };
