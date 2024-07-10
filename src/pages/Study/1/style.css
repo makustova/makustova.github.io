@@ -1,0 +1,29 @@
+body {
+  padding: 10px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+ul li {
+  list-style: inside;
+  padding-left: 10px;
+}
+
+code {
+  font-family: monospace, monospace;
+}
+
+li, p {
+  margin-bottom: 4px;
+}
