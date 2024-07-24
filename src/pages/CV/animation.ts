@@ -1,5 +1,7 @@
 import * as THREE from 'three';
 
+const AMOUNT = 1;
+
 const scene = new THREE.Scene();
 
 scene.fog = new THREE.Fog( 0xffffff, 1, 1000 );
@@ -27,45 +29,41 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 renderer.setAnimationLoop( animate );
 document.body.appendChild( renderer.domElement );
 
-const geometry = new THREE.SphereGeometry( .5, 50, 50 );
+const createBubble = () => {
+  const geometry = new THREE.SphereGeometry( Math.random(), 50, 50 );
 
-const material = new THREE.MeshPhysicalMaterial();
+  const material = new THREE.MeshPhysicalMaterial();
 
-material.color = new THREE.Color( 0xffffff );
-material.roughness = 1;
-material.metalness = 1;
-material.iridescence = 1;
-material.clearcoat = 1;
-material.transparent = true;
-material.opacity = 0.3;
-// material.alphaHash = true;
-material.side = THREE.DoubleSide;
-// material.flatShading = true;
-material.vertexColors = true;
-// material.wireframe = true;
-material.reflectivity = 1;
-material.specularColor = new THREE.Color( 0x000000 );
-material.specularIntensity = 1;
-material.ior = 1.5;
-material.sheenColor = new THREE.Color( 0xffffff );
+  material.color = new THREE.Color( 0xffffff );
+  material.roughness = 1;
+  material.metalness = 1;
+  material.iridescence = 1;
+  material.clearcoat = 1;
+  material.transparent = true;
+  material.opacity = 0.3;
+  // material.alphaHash = true;
+  material.side = THREE.DoubleSide;
+  // material.flatShading = true;
+  material.vertexColors = true;
+  // material.wireframe = true;
+  material.reflectivity = 1;
+  material.specularColor = new THREE.Color( 0x000000 );
+  material.specularIntensity = 1;
+  material.ior = 1.5;
+  material.sheenColor = new THREE.Color( 0xffffff );
 
-const bubble = new THREE.Mesh( geometry, material );
+  const bubble = new THREE.Mesh( geometry, material );
 
-// scene.add( bubble1 );
-scene.add( bubble );
-
-camera.position.z = 5;
-
-const position = bubble.geometry.attributes.position;
-const vector = new THREE.Vector3();
-
-for ( let i = 0, l = position.count; i < l; i ++ ) {
-  vector.fromBufferAttribute( position, i );
-  vector.applyMatrix4( bubble.matrixWorld );
-
-
+  return bubble;
 }
 
+for (let i = 0; i < AMOUNT; i++) {
+  const bubble = createBubble();
+  bubble.position.x = 0;
+  bubble.position.y = Math.random() * 3 - 2;
+  bubble.position.z = 0;
+  scene.add(bubble);
+}
 
 export function animate() {
 
@@ -83,11 +81,5 @@ export function animate() {
 let present = true;
 
 window.addEventListener('click', () => {
-  if (present) {
-    scene.remove(bubble);
-    present = false;
-  } else {
-    scene.add(bubble);
-    present = true;
-  }
+  window.location.reload();
 });
