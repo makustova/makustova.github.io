@@ -4,16 +4,8 @@
       "bufferView": 2,
       "componentType": 5126,
       "count": 2399,
-      "max": [
-        1.0,
-        2.0,
-        1.0
-      ],
-      "min": [
-        -1.0,
-        0.0,
-        -1.0
-      ],
+      "max": [1.0, 2.0, 1.0],
+      "min": [-1.0, 0.0, -1.0],
       "type": "VEC3"
     },
     {
@@ -21,30 +13,16 @@
       "byteOffset": 28788,
       "componentType": 5126,
       "count": 2399,
-      "max": [
-        1.0,
-        1.0,
-        1.0
-      ],
-      "min": [
-        -1.0,
-        -1.0,
-        -1.0
-      ],
+      "max": [1.0, 1.0, 1.0],
+      "min": [-1.0, -1.0, -1.0],
       "type": "VEC3"
     },
     {
       "bufferView": 1,
       "componentType": 5126,
       "count": 2399,
-      "max": [
-        1.0,
-        1.0
-      ],
-      "min": [
-        0.0,
-        0.0
-      ],
+      "max": [1.0, 1.0],
+      "min": [0.0, 0.0],
       "type": "VEC2"
     },
     {
@@ -94,9 +72,7 @@
       "uri": "scene.bin"
     }
   ],
-  "extensionsUsed": [
-    "KHR_materials_transmission"
-  ],
+  "extensionsUsed": ["KHR_materials_transmission"],
   "materials": [
     {
       "extensions": {
@@ -106,12 +82,7 @@
       },
       "name": "GLASS",
       "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          0.99,
-          0.99,
-          0.99,
-          1.0
-        ],
+        "baseColorFactor": [0.99, 0.99, 0.99, 1.0],
         "metallicFactor": 0.0,
         "roughnessFactor": 0.0
       }
@@ -136,63 +107,27 @@
   ],
   "nodes": [
     {
-      "children": [
-        1
-      ],
+      "children": [1],
       "matrix": [
-        1.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        2.220446049250313e-16,
-        -1.0,
-        0.0,
-        0.0,
-        1.0,
-        2.220446049250313e-16,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        1.0
+        1.0, 0.0, 0.0, 0.0, 0.0, 2.220446049250313e-16, -1.0, 0.0, 0.0, 1.0,
+        2.220446049250313e-16, 0.0, 0.0, 0.0, 0.0, 1.0
       ],
       "name": "Sketchfab_model"
     },
     {
-      "children": [
-        2
-      ],
+      "children": [2],
       "name": "root"
     },
     {
-      "children": [
-        3
-      ],
+      "children": [3],
       "matrix": [
-        1.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        2.220446049250313e-16,
-        1.0,
-        0.0,
-        0.0,
-        -1.0,
-        2.220446049250313e-16,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        1.0
+        1.0, 0.0, 0.0, 0.0, 0.0, 2.220446049250313e-16, 1.0, 0.0, 0.0, -1.0,
+        2.220446049250313e-16, 0.0, 0.0, 0.0, 0.0, 1.0
       ],
       "name": "GLTF_SceneRootNode"
     },
     {
-      "children": [
-        4
-      ],
+      "children": [4],
       "name": "Sphere_1"
     },
     {
@@ -204,9 +139,7 @@
   "scenes": [
     {
       "name": "Sketchfab_Scene",
-      "nodes": [
-        0
-      ]
+      "nodes": [0]
     }
   ]
 }
