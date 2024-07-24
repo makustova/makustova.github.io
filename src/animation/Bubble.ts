@@ -2,9 +2,10 @@ import * as THREE from "three";
 
 export class Bubble {
   mesh: THREE.Mesh;
+  geometry: THREE.SphereGeometry;
 
   constructor(radius: number) {
-    const geometry = new THREE.SphereGeometry(radius, 50, 50);
+    this.geometry = new THREE.SphereGeometry(radius, 50, 50);
 
     const material = new THREE.MeshPhysicalMaterial();
 
@@ -26,7 +27,7 @@ export class Bubble {
     material.ior = 1.5;
     material.sheenColor = new THREE.Color(0xffffff);
 
-    this.mesh = new THREE.Mesh(geometry, material);
+    this.mesh = new THREE.Mesh(this.geometry, material);
   }
 
   direction = new THREE.Vector3(

@@ -13,22 +13,18 @@ const router = createHashRouter([
     path: "/",
     element: <Outlet />,
     children: [
-      // {
-      //   index: true,
-      //   element: <CV />,
-      // },
       {
-        path: "/dev",
+        path: "/cv",
         element: <Dev />,
       },
-      {
-        path: "/cat",
-        element: <Cat />,
-      },
-      {
-        path: "/mus",
-        element: <Mus />,
-      },
+      // {
+      //   path: "/cat",
+      //   element: <Cat />,
+      // },
+      // {
+      //   path: "/mus",
+      //   element: <Mus />,
+      // },
     ],
   },
   {

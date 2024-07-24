@@ -3,7 +3,7 @@ import {Bubble} from "./Bubble";
 
 document.body.style.margin = "0";
 document.body.style.background =
-  "radial-gradient(circle, #c2c5fc 0%, white 100%)";
+  "radial-gradient(circle, #e1e2f6 0%, white 100%)";
 
 const AMOUNT = 50;
 
@@ -30,16 +30,17 @@ const camera = new THREE.OrthographicCamera(
   frustumSize / 2,
   frustumSize / -2,
   0.1,
-  100
+  2000
 );
 
 const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setAnimationLoop(animateBackground);
 const domElement = renderer.domElement;
-domElement.style.position = "absolute";
+domElement.style.position = "fixed";
 domElement.style.top = "0";
 domElement.style.left = "0";
+domElement.style.zIndex = "-1";
 document.body.appendChild(domElement);
 
 const bubbles = Array.from({length: AMOUNT}, () => new Bubble(Math.random()));
@@ -57,9 +58,9 @@ export function animateBackground() {
     if (bubble.mesh.position.y > 2 || bubble.mesh.position.y < -2) {
       bubble.direction.y *= -1;
     }
-    if (bubble.mesh.position.z > 1 || bubble.mesh.position.z < -1) {
-      bubble.direction.z *= -1;
-    }
+    // if (bubble.mesh.position.z > 1 || bubble.mesh.position.z < -1) {
+    //   bubble.direction.z *= -1;
+    // }
   });
 
   renderer.render(scene, camera);
@@ -68,6 +69,8 @@ export function animateBackground() {
 window.addEventListener("resize", onWindowResize, false);
 
 function onWindowResize() {
+  const aspect = window.innerWidth / window.innerHeight;
+
   camera.left = (frustumSize * aspect) / -2;
   camera.right = (frustumSize * aspect) / 2;
   camera.top = frustumSize / 2;
