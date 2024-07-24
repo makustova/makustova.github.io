@@ -1,4 +1,7 @@
 import * as THREE from "three";
+import { Bubble } from "./Bubble";
+
+const AMOUNT = 10;
 
 const scene = new THREE.Scene();
 
@@ -32,41 +35,26 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setAnimationLoop(animate);
 document.body.appendChild(renderer.domElement);
 
-const createBubble = () => {
-  const geometry = new THREE.SphereGeometry(Math.random(), 50, 50);
 
-  const material = new THREE.MeshPhysicalMaterial();
+const bubbles = Array.from({length: AMOUNT}, () => new Bubble(Math.random()));
 
-  material.color = new THREE.Color(0xffffff);
-  material.roughness = 1;
-  material.metalness = 1;
-  material.iridescence = 1;
-  material.clearcoat = 1;
-  material.transparent = true;
-  material.opacity = 0.3;
-  // material.alphaHash = true;
-  material.side = THREE.DoubleSide;
-  // material.flatShading = true;
-  material.vertexColors = true;
-  // material.wireframe = true;
-  material.reflectivity = 1;
-  material.specularColor = new THREE.Color(0x000000);
-  material.specularIntensity = 1;
-  material.ior = 1.5;
-  material.sheenColor = new THREE.Color(0xffffff);
-
-  const bubble = new THREE.Mesh(geometry, material);
-
-  return bubble;
-};
-
-const bubble = createBubble();
-bubble.position.z = -1;
-scene.add(bubble);
+bubbles.forEach((bubble) => {
+  scene.add(bubble.mesh);
+});
 
 export function animate() {
-  bubble.position.x = Math.sin(Date.now() / 1000);
-  bubble.position.y = Math.cos(Date.now() / 1000);
+  bubbles.forEach((bubble) => {
+    bubble.mesh.position.add(bubble.direction);
+    if (bubble.mesh.position.x > 3 || bubble.mesh.position.x < -3) {
+      bubble.direction.x *= -1;
+    }
+    if (bubble.mesh.position.y > 2 || bubble.mesh.position.y < -2) {
+      bubble.direction.y *= -1;
+    }
+    if (bubble.mesh.position.z > 1 || bubble.mesh.position.z < -1) {
+      bubble.direction.z *= -1;
+    }
+  })
 
   renderer.render(scene, camera);
 }
