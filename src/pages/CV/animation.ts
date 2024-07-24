@@ -56,6 +56,16 @@ scene.add( bubble );
 
 camera.position.z = 5;
 
+const position = bubble.geometry.attributes.position;
+const vector = new THREE.Vector3();
+
+for ( let i = 0, l = position.count; i < l; i ++ ) {
+  vector.fromBufferAttribute( position, i );
+  vector.applyMatrix4( bubble.matrixWorld );
+
+
+}
+
 
 export function animate() {
 
