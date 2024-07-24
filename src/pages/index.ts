@@ -1,2 +1,2 @@
 export {StudyHome, Study1} from "./Study";
-export {CV, Cat, Dev, Mus} from "./CV";
+export {Cat, Dev, Mus} from "./CV";

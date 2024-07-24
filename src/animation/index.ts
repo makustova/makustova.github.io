@@ -1,11 +1,15 @@
 import * as THREE from "three";
-import { Bubble } from "./Bubble";
+import {Bubble} from "./Bubble";
 
-const AMOUNT = 10;
+document.body.style.margin = "0";
+document.body.style.background =
+  "radial-gradient(circle, #c2c5fc 0%, white 100%)";
+
+const AMOUNT = 50;
 
 const scene = new THREE.Scene();
 
-const light = new THREE.AmbientLight(0xffffff); // soft white light
+const light = new THREE.AmbientLight(0xffffff);
 scene.add(light);
 
 const pointLight1 = new THREE.PointLight(0xffffff, 30, 100, 0);
@@ -16,9 +20,8 @@ const pointLight2 = new THREE.PointLight(0xffffff, 30, 100, 0);
 pointLight2.position.set(-2, -2, -2);
 scene.add(pointLight2);
 
-scene.background = new THREE.Color(0x1a1a1a);
+// scene.background = new THREE.Color(0xefe6f5);
 
-// const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 const aspect = window.innerWidth / window.innerHeight;
 const frustumSize = 5;
 const camera = new THREE.OrthographicCamera(
@@ -32,18 +35,21 @@ const camera = new THREE.OrthographicCamera(
 
 const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setAnimationLoop(animate);
-document.body.appendChild(renderer.domElement);
-
+renderer.setAnimationLoop(animateBackground);
+const domElement = renderer.domElement;
+domElement.style.position = "absolute";
+domElement.style.top = "0";
+domElement.style.left = "0";
+document.body.appendChild(domElement);
 
 const bubbles = Array.from({length: AMOUNT}, () => new Bubble(Math.random()));
 
-bubbles.forEach((bubble) => {
+bubbles.forEach(bubble => {
   scene.add(bubble.mesh);
 });
 
-export function animate() {
-  bubbles.forEach((bubble) => {
+export function animateBackground() {
+  bubbles.forEach(bubble => {
     bubble.mesh.position.add(bubble.direction);
     if (bubble.mesh.position.x > 3 || bubble.mesh.position.x < -3) {
       bubble.direction.x *= -1;
@@ -54,19 +60,20 @@ export function animate() {
     if (bubble.mesh.position.z > 1 || bubble.mesh.position.z < -1) {
       bubble.direction.z *= -1;
     }
-  })
+  });
 
   renderer.render(scene, camera);
 }
 
-let present = true;
+window.addEventListener("resize", onWindowResize, false);
 
-window.addEventListener("click", () => {
-  if (present) {
-    scene.remove(bubble);
-    present = false;
-  } else {
-    scene.add(bubble);
-    present = true;
-  }
-});
+function onWindowResize() {
+  camera.left = (frustumSize * aspect) / -2;
+  camera.right = (frustumSize * aspect) / 2;
+  camera.top = frustumSize / 2;
+  camera.bottom = frustumSize / -2;
+
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
