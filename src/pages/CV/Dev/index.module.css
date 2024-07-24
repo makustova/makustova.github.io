@@ -78,7 +78,7 @@
 .stack {
   font-size: 14px;
   font-weight: 400;
-  color:rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.6);
   line-height: 1.3;
 }
 
@@ -123,5 +123,22 @@
 }
 
 .experienceWrapper {
+  margin-top: -24px;
   margin-bottom: -12px;
+}
+
+.contactsWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contact {
+  margin-left: 12px;
+  opacity: 0.6;
+}
+
+.contact:hover {
+  opacity: 0.8;
 }
