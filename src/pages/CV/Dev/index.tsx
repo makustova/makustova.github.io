@@ -108,7 +108,7 @@ export const Dev: React.FC = () => {
       <h3 className={classes.thirdTitle}>Skills and Competencies</h3>
       <p className={classes.stack}>
         Russian (native), English (advanced), French (elementary), Norwegian
-        (elementary), Mandarin (elementary), Serbian (elementary)
+        (elementary), Mandarin (elementary), Serbian (elementary).
       </p>
     </div>
   );
