@@ -2,8 +2,8 @@ import * as THREE from "three";
 import {Bubble} from "./Bubble";
 
 document.body.style.margin = "0";
-document.body.style.background =
-  "radial-gradient(circle, #e1e2f6 0%, white 100%)";
+// document.body.style.background =
+//   "radial-gradient(circle, #e1e2f6 0%, white 100%)";
 
 const AMOUNT = 50;
 
@@ -20,7 +20,7 @@ const pointLight2 = new THREE.PointLight(0xffffff, 30, 100, 0);
 pointLight2.position.set(-2, -2, -2);
 scene.add(pointLight2);
 
-// scene.background = new THREE.Color(0xefe6f5);
+scene.background = new THREE.Color(0xfcf8ff);
 
 const aspect = window.innerWidth / window.innerHeight;
 const frustumSize = 5;
