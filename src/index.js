@@ -3,7 +3,7 @@ import "./reset.css";
 import "./globals.css";
 import {createRoot} from "react-dom/client";
 import {createHashRouter, RouterProvider, Outlet} from "react-router-dom";
-import {StudyHome, Study1, Dev, Cat, Mus} from "./pages";
+import {StudyHome, Study1, Study2, Dev, Cat, Mus} from "./pages";
 import {animateBackground} from "./animation";
 
 animateBackground();
@@ -39,6 +39,10 @@ const router = createHashRouter([
         path: "/study/1",
         element: <Study1 />,
       },
+      {
+        path: "/study/2",
+        element: <Study2 />,
+      }
     ],
   },
 ]);

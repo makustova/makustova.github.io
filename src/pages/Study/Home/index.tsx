@@ -8,6 +8,8 @@ export const StudyHome: React.FC = () => {
       <ul>
         <li>
           <Link to="/study/1">1</Link>
+          <br />
+          <Link to="/study/2">2</Link>
         </li>
       </ul>
     </div>
