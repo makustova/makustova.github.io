@@ -1,0 +1,31 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100vh;
+  padding: 24px;
+}
+
+.heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+.iframe {
+  border-radius: 24px;
+  background-color: white;
+  padding: 24px;
+  border: 1px solid lightgray;
+  opacity: .7;
+  align-self: center;
+  width: 100%;
+  max-width: 800px;
+  height: 600px;
+  margin-top: 24px;
+}
+
+.paragraph {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
