@@ -1,4 +1,5 @@
 import * as React from "react";
+import {Link} from "react-router-dom";
 import classes from "../index.module.css";
 import iframe from "./iframe.html";
 
@@ -11,6 +12,10 @@ export const Study2: React.FC = () => {
         <code>code</code>, маркированный и нумерованный список
       </p>
       <iframe className={classes.iframe} srcDoc={iframe} />
+      <div className={classes.nav}>
+        <Link to="/study/1">{"<<<"}</Link>
+        <Link to="/study/3">{">>>"}</Link>
+      </div>
     </div>
   );
 };

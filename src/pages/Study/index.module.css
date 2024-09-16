@@ -21,11 +21,19 @@
   align-self: center;
   width: 100%;
   max-width: 800px;
-  height: 600px;
+  height: 700px;
   margin-top: 24px;
 }
 
 .paragraph {
   font-size: 16px;
   margin-bottom: 12px;
+}
+
+.nav {
+  display: flex;
+  align-self: stretch;
+  justify-content: center;
+  margin-top: 24px;
+  gap: 12px;
 }

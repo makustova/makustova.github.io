@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Моя третья домашка</title>
+    <style>
+      div {
+        padding: 12px;
+        border-radius: 12px;
+      }
+      .big-block {
+        background-color: red;
+        height: 100px;
+        margin-bottom: 12px;
+      }
+      .block-group {
+        margin-bottom: 12px;
+      }
+      .inline {
+        background-color: lightblue;
+        display: inline;
+        margin-right: 12px;
+        margin-bottom: 6px;
+      }
+      .inline-block {
+        background-color: lightgreen;
+        display: inline-block;
+        margin-right: 12px;
+        margin-bottom: 6px;
+        height: 60px;
+        width: 100px;
+      }
+      .flex-container {
+        background-color: orange;
+        display: flex;
+        justify-content: space-between;
+        padding: 12px;
+        height: 200px;
+        gap: 12px;
+      }
+      .flex-child {
+        display: flex;
+        background-color: lightcoral;
+        height: 60px;
+        width: 100px;
+        justify-content: center;
+        align-items: center;
+      }
+      p {
+        margin-top: 0;
+      }
+      .border-block {
+        margin-bottom: 12px;
+        padding: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="big-block">
+      у div по умолчанию <code>display: block</code> – это значит, что блок
+      занимает всю ширину родителя
+    </div>
+
+    <div class="block-group">
+      <span class="inline">у span <code>display: inline</code></span>
+      <span class="inline">у span <code>display: inline</code></span>
+      <span class="inline">у span <code>display: inline</code></span>
+      <span class="inline">у span <code>display: inline</code></span>
+      <span class="inline">у span <code>display: inline</code></span>
+      <span class="inline">у span <code>display: inline</code></span>
+      <span class="inline">у span <code>display: inline</code></span>
+      <span class="inline">у span <code>display: inline</code></span>
+      <span class="inline">у span <code>display: inline</code></span>
+      <span class="inline">у span <code>display: inline</code></span>
+    </div>
+
+    <div class="block-group">
+      <div class="inline-block"><code>display: inline-block</code></div>
+      <div class="inline-block"><code>display: inline-block</code></div>
+      <div class="inline-block"><code>display: inline-block</code></div>
+      <div class="inline-block"><code>display: inline-block</code></div>
+      <div class="inline-block"><code>display: inline-block</code></div>
+      <div class="inline-block"><code>display: inline-block</code></div>
+      <div class="inline-block"><code>display: inline-block</code></div>
+      <div class="inline-block"><code>display: inline-block</code></div>
+      <div class="inline-block"><code>display: inline-block</code></div>
+    </div>
+
+    <div class="block-group">
+      <p><code>display: flex</code></p>
+      <div class="flex-container">
+        <div class="flex-child">1</div>
+        <div class="flex-child">2</div>
+        <div class="flex-child">3</div>
+        <div class="flex-child">4</div>
+        <div class="flex-child">5</div>
+      </div>
+    </div>
+
+    <div class="block-group">
+      <p>Атрибут <code>border</code> отвечает за границы</p>
+      <div class="border-block" style="border: 1px solid black">
+        <code>border: 1px solid black;</code>
+      </div>
+      <div class="border-block" style="border: 2px dashed red">
+        <code>border: 2px dashed red;</code>
+      </div>
+      <div class="border-block" style="border: 3px dotted green">
+        <code>border: 3px dotted green;</code>
+      </div>
+      <div class="border-block" style="border: 10px double orangered">
+        <code>border: 10px double orangered;</code>
+      </div>
+    </div>
+
+    <div class="block-group">
+      <p>Атрибут <code>background</code> позволяет задавать фон блоку</p>
+      <div class="border-block" style="background: lightblue">
+        <code>background: lightblue;</code>
+      </div>
+      <div
+        class="border-block"
+        style="
+          background: url(https://gratisography.com/wp-content/uploads/2024/01/gratisography-cyber-kitty-800x525.jpg);
+          height: 500px;
+        "
+      >
+        <code>background: url(http://image.url);</code>
+      </div>
+    </div>
+  </body>
+</html>
