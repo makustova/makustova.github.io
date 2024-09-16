@@ -9,6 +9,8 @@ import {
   Study2,
   Study3,
   Study4,
+  Study5,
+  Study6,
   Dev,
   Cat,
   Mus,
@@ -60,6 +62,14 @@ const router = createHashRouter([
         path: "/study/4",
         element: <Study4 />,
       },
+      {
+        path: "/study/5",
+        element: <Study5 />,
+      },
+      {
+        path: "/study/6",
+        element: <Study6 />,
+      }
     ],
   },
 ]);

@@ -19,6 +19,12 @@ export const StudyHome: React.FC = () => {
           <br />
           <br />
           <Link to="/study/4">4</Link>
+          <br />
+          <br />
+          <Link to="/study/5">5</Link>
+          <br />
+          <br />
+          <Link to="/study/6">6</Link>
         </li>
       </ul>
     </div>
